@@ -1,58 +1,58 @@
-# Translate books with GPT
+# Traduce libros con GPT
 
-This project harnesses the power of GPT-4 LLM to translate eBooks from any language into your preferred language, maintaining the integrity and structure of the original content. Imagine having access to a vast world of literature, regardless of the original language, right at your fingertips.
+Este proyecto aprovecha el poder de GPT-4 LLM para traducir libros electrónicos de cualquier idioma a tu idioma preferido, manteniendo la integridad y estructura del contenido original. Imagina tener acceso a un vasto mundo de literatura, independientemente del idioma original, al alcance de tus manos.
 
-This tool not only translates the text but also carefully compiles each element of the eBook – chapters, footnotes, and all – into a perfectly formatted EPUB file. We use the `gpt-4-1106-preview` (GPT-4 Turbo) model by default to ensure high-quality translations. However, we understand the need for flexibility, so we've made it easy to switch models in `main.py` according to your specific needs.
+Esta herramienta no solo traduce el texto, sino que también compila cuidadosamente cada elemento del libro electrónico, incluidos los capítulos, las notas al pie y todo, en un archivo EPUB perfectamente formateado. Utilizamos el modelo gpt-4-1106-preview (GPT-4 Turbo) de forma predeterminada para garantizar traducciones de alta calidad. Sin embargo, entendemos la necesidad de flexibilidad, por lo que hemos facilitado cambiar los modelos en main.py según tus necesidades específicas.
 
 
-## 🛠️ Installation
+## 🛠️ Instalación
 
-To install the necessary components for our project, follow these simple steps:
+Para instalar los componentes necesarios para nuestro proyecto, sigue estos sencillos pasos:
 
 ```bash
 pip install -r requirements.txt
 cp config.yaml.example config.yaml
 ```
 
-Remember to add your OpenAI key to `config.yaml`.
+Recuerda agregar tu clave de OpenAI a `config.yaml`.
 
 
-## 🎮 Usage
+## 🎮 Uso
 
-Our script comes with a variety of parameters to suit your needs. Here's how you can make the most out of it:
+Nuestro script viene con una variedad de parámetros para satisfacer tus necesidades. Así es como puedes sacarle el máximo provecho:
 
-### Show Chapters
+### Mostrar Capítulos
 
-Before diving into translation, it's recommended to use the `show-chapters` mode to review the structure of your book:
+Antes de sumergirte en la traducción, se recomienda usar el modo `show-chapters` para revisar la estructura de tu libro:
 
 ```bash
 python main.py show-chapters --input yourbook.epub
 ```
 
-This command will display all the chapters, helping you to plan your translation process effectively.
+Este comando mostrará todos los capítulos, ayudándote a planificar tu proceso de traducción de manera efectiva.
 
-### Translate Mode
+### Modo de Traducción
 
-#### Basic Usage
+#### Uso Básico
 
-To translate a book from English to Polish, use the following command:
-
-```bash
-python main.py translate --input yourbook.epub --output translatedbook.epub --config config.yaml --from-lang EN --to-lang PL
-```
-
-#### Advanced Usage
-
-For more specific needs, such as translating from chapter 13 to chapter 37 from English to Polish, use:
+Para traducir un libro de inglés a polaco, usa el siguiente comando:
 
 ```bash
-python main.py translate --input yourbook.epub --output translatedbook.epub --config config.yaml --from-chapter 13 --to-chapter 37 --from-lang EN --to-lang PL
+python main.py translate --input yourbook.epub --output translatedbook.epub --config config.yaml --from-lang EN --to-lang ES
+```
+
+#### Uso Avanzado
+
+Para necesidades más específicas, como traducir del capítulo 13 al capítulo 37 de inglés a polaco, usa:
+
+```bash
+python main.py translate --input yourbook.epub --output translatedbook.epub --config config.yaml --from-chapter 13 --to-chapter 37 --from-lang EN --to-lang ES
 ```
 
 
-## Converting from AZW3 to EPUB
+## Convertir de AZW3 a EPUB
 
-For books in AZW3 format (Amazon Kindle), use Calibre (https://calibre-ebook.com) to convert them to EPUB before using this tool.
+Para libros en formato AZW3 (Kindle de Amazon), utiliza Calibre (https://calibre-ebook.com) para convertirlos a EPUB antes de usar esta herramienta.
 
 
 ## DRM (Digital Rights Management)
@@ -60,11 +60,11 @@ For books in AZW3 format (Amazon Kindle), use Calibre (https://calibre-ebook.com
 Amazon eBooks (AZW3 format) are encrypted with your device's serial number. To decrypt these books, use the DeDRM tool (https://dedrm.com). You can find your Kindle's serial number at https://www.amazon.com/hz/mycd/digital-console/alldevices.
 
 
-## 🤝 Contributing
+## 🤝 Contribuciones
 
-We warmly welcome contributions to this project! Your insights and improvements are invaluable. Currently, we're particularly interested in contributions in the following areas:
+¡Damos una cálida bienvenida a las contribuciones a este proyecto! Tus ideas y mejoras son invaluables. Actualmente, estamos particularmente interesados en contribuciones en las siguientes áreas:
 
-- Support for other eBook formats: AZW3, MOBI, PDF.
-- Integration of a built-in DeDRM tool
+Soporte para otros formatos de libros electrónicos: AZW3, MOBI, PDF.
+Integración de una herramienta DeDRM incorporada.
 
-Join us in breaking down language barriers in literature and enhancing the accessibility of eBooks worldwide!
+¡Únete a nosotros para derribar las barreras del lenguaje en la literatura y mejorar la accesibilidad de los libros electrónicos en todo el mundo!

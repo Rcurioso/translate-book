@@ -33,10 +33,10 @@ def split_html_by_sentence(html_str, max_chunk_size=2000):
     if current_chunk:
         chunks.append(current_chunk)
 
-    # Remove dot from the beginning of first chunk
+    # Eliminar el punto del principio del primer fragmento
     chunks[0] = chunks[0][2:]
 
-    # Add dot to the end of each chunk
+    # Agregar un punto al final de cada fragmento
     for i in range(len(chunks)):
         chunks[i] += '.'
 
@@ -49,7 +49,7 @@ def system_prompt(from_lang, to_lang):
     return p
 
 
-def translate_chunk(client, text, from_lang='EN', to_lang='PL'):
+def translate_chunk(client, text, from_lang='EN', to_lang='ES'):
     response = client.chat.completions.create(
         model='gpt-4-1106-preview',
         temperature=0.2,
@@ -63,7 +63,7 @@ def translate_chunk(client, text, from_lang='EN', to_lang='PL'):
     return translated_text
 
 
-def translate_text(client, text, from_lang='EN', to_lang='PL'):
+def translate_text(client, text, from_lang='EN', to_lang='ES'):
     translated_chunks = []
     chunks = split_html_by_sentence(text)
 
@@ -74,7 +74,7 @@ def translate_text(client, text, from_lang='EN', to_lang='PL'):
     return ' '.join(translated_chunks)
 
 
-def translate(client, input_epub_path, output_epub_path, from_chapter=0, to_chapter=9999, from_lang='EN', to_lang='PL'):
+def translate(client, input_epub_path, output_epub_path, from_chapter=0, to_chapter=9999, from_lang='EN', to_lang='ES'):
     book = epub.read_epub(input_epub_path)
 
     current_chapter = 1
@@ -112,11 +112,11 @@ def show_chapters(input_epub_path):
 
 
 if __name__ == "__main__":
-    # Create the top-level parser
+    # Crear el analizador de nivel superior
     parser = argparse.ArgumentParser(description='App to translate or show chapters of a book.')
     subparsers = parser.add_subparsers(dest='mode', help='Mode of operation.')
 
-    # Create the parser for the "translate" mode
+    # Crear el analizador para el modo "translate"
     parser_translate = subparsers.add_parser('translate', help='Translate a book.')
     parser_translate.add_argument('--input', required=True, help='Input file path.')
     parser_translate.add_argument('--output', required=True, help='Output file path.')
@@ -124,16 +124,16 @@ if __name__ == "__main__":
     parser_translate.add_argument('--from-chapter', type=int, help='Starting chapter for translation.')
     parser_translate.add_argument('--to-chapter', type=int, help='Ending chapter for translation.')
     parser_translate.add_argument('--from-lang', help='Source language.', default='EN')
-    parser_translate.add_argument('--to-lang', help='Target language.', default='PL')
+    parser_translate.add_argument('--to-lang', help='Target language.', default='ES')
 
-    # Create the parser for the "show-chapters" mode
+    # Crear el analizador para el modo "show-chapters"
     parser_show = subparsers.add_parser('show-chapters', help='Show the list of chapters.')
     parser_show.add_argument('--input', required=True, help='Input file path.')
 
-    # Parse the arguments
+    # Analizar los argumentos
     args = parser.parse_args()
 
-    # Call the appropriate function based on the mode
+    # Llamar a la función apropiada según el modo
     if args.mode == 'translate':
         config = read_config(args.config)
         from_chapter = int(args.from_chapter)
